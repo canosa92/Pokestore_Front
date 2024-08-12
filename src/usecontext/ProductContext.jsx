@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react';
+require('dotenv').config();
 
 const ProductContext = createContext();
 
@@ -10,7 +11,7 @@ export const ProductProvider = ({ children }) => {
 
   const fetchProducts = async () => {
     try {
-      const response = await fetch('http://localhost:2999/productos');
+      const response = await fetch(REACT_APP_API_URL +'/productos');
       if (!response.ok) {
         throw new Error('Failed to fetch products', error);
       }
@@ -33,7 +34,7 @@ export const ProductProvider = ({ children }) => {
   };
   const fetchProductByName = async (nombre) => {
     try {
-      const response = await fetch(`http://localhost:2999/productos/nombre/${nombre}`);
+      const response = await fetch(REACT_APP_API_URL +`/productos/nombre/${nombre}`);
       if (!response.ok) {
         throw new Error('Failed to fetch product');
       }
@@ -46,7 +47,7 @@ export const ProductProvider = ({ children }) => {
 // Función para crear un nuevo producto
 const createProduct = async (product) => {
   try {
-    const response = await fetch('http://localhost:2999/productos/crear', {
+    const response = await fetch(REACT_APP_API_URL +'/productos/crear', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -70,7 +71,7 @@ const updateProduct = async (id, product) => {
     console.log('Sending update request for id:', id);
     console.log('Update data:', product);
 
-    const response = await fetch(`http://localhost:2999/productos/${id}`, {
+    const response = await fetch(REACT_APP_API_URL +`/productos/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -95,7 +96,7 @@ const updateProduct = async (id, product) => {
 };
 const deleteProduct = async (id) => {
   try {
-    const response = await fetch(`http://localhost:2999/productos/${id}`, {
+    const response = await fetch(REACT_APP_API_URL +`/productos/${id}`, {
       method: 'DELETE',
     });
     if (!response.ok) {
