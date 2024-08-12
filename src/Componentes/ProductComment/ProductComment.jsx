@@ -33,7 +33,7 @@ const ProductCommentForm = ({ productId, productName, productImage, productDescr
     }
 
     try {
-      const response = await fetch('http://localhost:2999/comment/add-comment', {
+      const response = await fetch('https://pokestore-back-5oqh.onrender.com/comment/add-comment', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

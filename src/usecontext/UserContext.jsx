@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
-require('dotenv').config();
+const apiUrl = "https://pokestore-back-5oqh.onrender.com";
 
 const UserContext = createContext();
 
@@ -36,7 +36,7 @@ export const UserProvider = ({ children }) => {
     
         try {
             const userId = user.uid;
-            const response = await fetch(REACT_APP_API_URL +`/user/${userId}/user-profile`, {
+            const response = await fetch(`${apiUrl}/user/${userId}/user-profile`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -58,7 +58,7 @@ export const UserProvider = ({ children }) => {
 
     const login = async (email, password) => {
         try {
-            const response = await fetch(REACT_APP_API_URL +'/user/login', {
+            const response = await fetch(`${apiUrl}/user/login`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email, password })
@@ -86,7 +86,7 @@ export const UserProvider = ({ children }) => {
     
     const register = async (email, password, name, username, role) => {
         try {
-          const response = await fetch(REACT_APP_API_URL +'/user/register', {
+          const response = await fetch(`${apiUrl}/user/register`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email, password, name, username, role })
@@ -120,7 +120,7 @@ export const UserProvider = ({ children }) => {
                 return;
             }
 
-            const response = await fetch(REACT_APP_API_URL +`/user/${user.uid}/wishlist/add`, {
+            const response = await fetch(`${apiUrl}/user/${user.uid}/wishlist/add`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -152,7 +152,7 @@ export const UserProvider = ({ children }) => {
                 return;
             }
     
-            const response = await fetch(REACT_APP_API_URL +`/user/${user.uid}/wishlist/remove`, {
+            const response = await fetch(`${apiUrl}/user/${user.uid}/wishlist/remove`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
