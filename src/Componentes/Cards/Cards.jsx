@@ -23,7 +23,6 @@ const Cards = ({ products, showOrderOptions }) => {
     useEffect(() => {
         if (success) {
             const timer = setTimeout(() => {
-                // Aquí estaba `setShowSuccess(false);` pero se ha eliminado ya que no se usa `showSuccess`
             }, 2000); // 2 segundos
             return () => clearTimeout(timer);
         }

@@ -85,6 +85,25 @@ const ProductDetail = () => {
       year: 'numeric',
     });
   }
+  const handleToggleWishlist = async (productId) => {
+    if (user) {
+        if (isInWishlist(productId)) {
+            await removeFromWishList(productId);
+            console.log(`se ha eliminado ${productId}`);
+        } else {
+            await addToWishList(productId);
+            console.log(`se ha añadido ${productId}`);
+        }
+    } else {
+        toast({
+            title: "Acceso Denegado",
+            description: "Debes estar registrado o logeado para añadir productos a tu lista de deseos.",
+            status: "warning",
+            duration: 5000,
+            isClosable: true,
+        });
+    }
+};
 
   const renderStars = (rating) => {
     const starArray = Array.from({ length: 5 }, (_, index) => (
@@ -212,7 +231,7 @@ const ProductDetail = () => {
       <IconButton
         aria-label={user?.wishList?.includes(product._id) ? 'Eliminar de la lista de deseos' : 'Añadir a la lista de deseos'}
         icon={user?.wishList?.includes(product._id) ? <FaHeart /> : <FaRegHeart />}
-        onClick={() => toggleWishList(product._id)}
+        onClick={() => handleToggleWishlist(product._id)}
         colorScheme={user?.wishList?.includes(product._id) ? 'red' : 'gray'}
         variant="outline"
       />
