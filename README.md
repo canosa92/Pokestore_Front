@@ -64,7 +64,7 @@ src/
 ├── pages/              # Páginas principales de la aplicación
 ├── Routes/             # Rutas principales de la aplicación
 └── App.jsx             # Componente principal de la aplicación
-
+```
 ## Contribuciones
 
 Las contribuciones son bienvenidas. Si deseas colaborar, sigue estos pasos:
